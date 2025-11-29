@@ -8,6 +8,7 @@ const useWindowStore = create(immer((set) => ({
     openWindow: (windowKey, data = null) => {
         set((state) => {
             const window = state.windows[windowKey];
+            if (!window) return;
             window.isOpen = true;
             window.zIndex = state.nextZIndex;
             window.data = data ?? window.data
@@ -18,6 +19,7 @@ const useWindowStore = create(immer((set) => ({
     closeWindow: (windowKey, data = null) => {
         set((state) => {
             const window = state.windows[windowKey];
+            if (!window) return;
             window.isOpen = false;
             window.zIndex = INITIAL_Z_INDEX;
             window.data = null
