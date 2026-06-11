@@ -1,40 +1,40 @@
-import { useState } from 'react';
-import { locations } from '#constants';
-import useWindowStore from '#store/window.js';
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import { useState } from 'react'
+import WindowControls from '#components/WindowControls.jsx'
+import { locations } from '#constants'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
+import useWindowStore from '#store/window.js'
 
-const SIDEBAR_LOCATIONS = [locations.work, locations.about];
+const SIDEBAR_LOCATIONS = [locations.work, locations.about]
 
 const Finder = (props) => {
-  const { openWindow } = useWindowStore();
-  const [activeLocation, setActiveLocation] = useState(locations.work);
-  const [activeNode, setActiveNode] = useState(locations.work);
+  const { openWindow } = useWindowStore()
+  const [activeLocation, setActiveLocation] = useState(locations.work)
+  const [activeNode, setActiveNode] = useState(locations.work)
 
   const selectLocation = (location) => {
-    setActiveLocation(location);
-    setActiveNode(location);
-  };
+    setActiveLocation(location)
+    setActiveNode(location)
+  }
 
   const openItem = (item) => {
     switch (item.kind === 'folder' ? 'folder' : item.fileType) {
       case 'folder':
-        setActiveNode(item);
-        break;
+        setActiveNode(item)
+        break
       case 'url':
       case 'fig':
-        window.open(item.href, '_blank', 'noopener,noreferrer');
-        break;
+        window.open(item.href, '_blank', 'noopener,noreferrer')
+        break
       case 'txt':
-        openWindow('txtfile', item);
-        break;
+        openWindow('txtfile', item)
+        break
       case 'img':
-        openWindow('imgfile', item);
-        break;
+        openWindow('imgfile', item)
+        break
       default:
-        break;
+        break
     }
-  };
+  }
 
   return (
     <section id="finder" {...props}>
@@ -48,7 +48,9 @@ const Finder = (props) => {
               <li
                 key={location.id}
                 className={
-                  activeLocation.type === location.type ? 'active' : 'not-active'
+                  activeLocation.type === location.type
+                    ? 'active'
+                    : 'not-active'
                 }
                 onClick={() => selectLocation(location)}
               >
@@ -81,7 +83,7 @@ const Finder = (props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(Finder, 'finder');
+export default WindowWrapper(Finder, 'finder')

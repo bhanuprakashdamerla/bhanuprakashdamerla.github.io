@@ -1,6 +1,6 @@
-import { socials } from '#constants';
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import WindowControls from '#components/WindowControls.jsx'
+import { socials } from '#constants'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
 
 const Contact = (props) => {
   return (
@@ -31,7 +31,7 @@ const Contact = (props) => {
         </ul>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(Contact, 'contact');
+export default WindowWrapper(Contact, 'contact')

@@ -1,6 +1,6 @@
-import Welcome from "./Welcome"
-import Navbar from "./Navbar"
-import Dock from "./Dock"
-import WindowControls from "./WindowControls"
+import Dock from './Dock'
+import Navbar from './Navbar'
+import Welcome from './Welcome'
+import WindowControls from './WindowControls'
 
-export {Welcome, Navbar, Dock, WindowControls}
+export { Dock, Navbar, Welcome, WindowControls }

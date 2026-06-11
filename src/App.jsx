@@ -1,5 +1,13 @@
-import {Welcome, Navbar, Dock} from "#components"
-import {Finder, Safari, Terminal, Contact, Photos, TxtFile, ImgFile} from "#windows"
+import { Dock, Navbar, Welcome } from '#components'
+import {
+  Contact,
+  Finder,
+  ImgFile,
+  Photos,
+  Safari,
+  Terminal,
+  TxtFile,
+} from '#windows'
 
 const App = () => {
   return (

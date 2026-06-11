@@ -1,8 +1,8 @@
-import dayjs from 'dayjs';
-import { Check } from 'lucide-react';
-import { techStack } from '#constants';
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import dayjs from 'dayjs'
+import { Check } from 'lucide-react'
+import WindowControls from '#components/WindowControls.jsx'
+import { techStack } from '#constants'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
 
 const Terminal = (props) => {
   return (
@@ -13,9 +13,7 @@ const Terminal = (props) => {
       </div>
 
       <div className="techstack">
-        <p>
-          Last login: {dayjs().format('ddd MMM D HH:mm:ss')} on console
-        </p>
+        <p>Last login: {dayjs().format('ddd MMM D HH:mm:ss')} on console</p>
         <p className="label">bhanu@portfolio ~ % show skills</p>
 
         <ul className="content">
@@ -40,7 +38,7 @@ const Terminal = (props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(Terminal, 'terminal');
+export default WindowWrapper(Terminal, 'terminal')

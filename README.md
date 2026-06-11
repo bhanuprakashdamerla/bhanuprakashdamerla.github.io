@@ -11,6 +11,7 @@ The site recreates the macOS desktop experience in the browser — a menu bar, a
 - [GSAP](https://gsap.com/) for window and UI animations
 - [Zustand](https://zustand-demo.pmnd.rs/) (with Immer) for window state management
 - [Bun](https://bun.sh/) as the package manager and script runner
+- [Biome](https://biomejs.dev/) for linting and formatting
 
 ## Getting Started
 
@@ -21,8 +22,11 @@ bun install
 # Start the dev server
 bun run dev
 
-# Lint
+# Lint and check formatting (add :fix to auto-fix)
 bun run lint
+
+# Format all files
+bun run format
 
 # Production build (outputs to dist/)
 bun run build

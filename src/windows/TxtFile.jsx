@@ -1,5 +1,5 @@
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import WindowControls from '#components/WindowControls.jsx'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
 
 const TxtFile = ({ data, ...props }) => {
   return (
@@ -27,7 +27,7 @@ const TxtFile = ({ data, ...props }) => {
         ))}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(TxtFile, 'txtfile');
+export default WindowWrapper(TxtFile, 'txtfile')

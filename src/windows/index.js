@@ -1,9 +1,9 @@
-import Finder from './Finder';
-import Safari from './Safari';
-import Terminal from './Terminal';
-import Contact from './Contact';
-import Photos from './Photos';
-import TxtFile from './TxtFile';
-import ImgFile from './ImgFile';
+import Contact from './Contact'
+import Finder from './Finder'
+import ImgFile from './ImgFile'
+import Photos from './Photos'
+import Safari from './Safari'
+import Terminal from './Terminal'
+import TxtFile from './TxtFile'
 
-export { Finder, Safari, Terminal, Contact, Photos, TxtFile, ImgFile };
+export { Contact, Finder, ImgFile, Photos, Safari, Terminal, TxtFile }

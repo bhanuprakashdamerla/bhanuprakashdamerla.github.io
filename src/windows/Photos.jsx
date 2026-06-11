@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { photosLinks, gallery } from '#constants';
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import { useState } from 'react'
+import WindowControls from '#components/WindowControls.jsx'
+import { gallery, photosLinks } from '#constants'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
 
 const Photos = (props) => {
-  const [activeLink, setActiveLink] = useState(photosLinks[0]);
+  const [activeLink, setActiveLink] = useState(photosLinks[0])
 
   return (
     <section id="photos" {...props}>
@@ -43,7 +43,7 @@ const Photos = (props) => {
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(Photos, 'photos');
+export default WindowWrapper(Photos, 'photos')

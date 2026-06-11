@@ -1,7 +1,7 @@
-import { ArrowRight } from 'lucide-react';
-import { blogPosts } from '#constants';
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import { ArrowRight } from 'lucide-react'
+import WindowControls from '#components/WindowControls.jsx'
+import { blogPosts } from '#constants'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
 
 const Safari = (props) => {
   return (
@@ -43,7 +43,7 @@ const Safari = (props) => {
         </ul>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(Safari, 'safari');
+export default WindowWrapper(Safari, 'safari')

@@ -1,5 +1,5 @@
-import WindowWrapper from '#hoc/WindowWrapper.jsx';
-import WindowControls from '#components/WindowControls.jsx';
+import WindowControls from '#components/WindowControls.jsx'
+import WindowWrapper from '#hoc/WindowWrapper.jsx'
 
 const ImgFile = ({ data, ...props }) => {
   return (
@@ -13,7 +13,7 @@ const ImgFile = ({ data, ...props }) => {
         <img src={data?.imageUrl} alt={data?.name ?? 'preview'} />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default WindowWrapper(ImgFile, 'imgfile');
+export default WindowWrapper(ImgFile, 'imgfile')
