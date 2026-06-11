@@ -1,16 +1,47 @@
-# React + Vite
+# Bhanu Prakash — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A macOS-inspired portfolio website, live at **[bhanuprakashdamerla.github.io](https://bhanuprakashdamerla.github.io/)**.
 
-Currently, two official plugins are available:
+The site recreates the macOS desktop experience in the browser — a menu bar, a dock, and draggable app windows (Finder, Safari, Terminal, Photos, Contact, and file viewers) that open like native apps.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## React Compiler
+- [React 19](https://react.dev/) with [Vite](https://vite.dev/) for the build tooling
+- [Tailwind CSS 4](https://tailwindcss.com/) for styling
+- [GSAP](https://gsap.com/) for window and UI animations
+- [Zustand](https://zustand-demo.pmnd.rs/) (with Immer) for window state management
+- [Bun](https://bun.sh/) as the package manager and script runner
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+```bash
+# Install dependencies
+bun install
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Start the dev server
+bun run dev
+
+# Lint
+bun run lint
+
+# Production build (outputs to dist/)
+bun run build
+
+# Preview the production build
+bun run preview
+```
+
+## Project Structure
+
+```
+src/
+├── components/   # Desktop UI — Navbar, Dock, Welcome screen, window controls
+├── windows/      # App windows — Finder, Safari, Terminal, Photos, Contact, file viewers
+├── hoc/          # WindowWrapper HOC providing drag, focus, and open/close behavior
+├── store/        # Zustand store for window state
+└── constants/    # Site content and configuration
+```
+
+## Deployment
+
+Every push to `main` triggers a GitHub Actions workflow ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)) that builds the site with Bun and deploys it to GitHub Pages.
