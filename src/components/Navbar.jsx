@@ -1,10 +1,21 @@
 import dayjs from 'dayjs'
 import { Sparkles } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { navIcons, navLinks } from '#constants'
 import useUIStore from '#store/ui.js'
 
+const CLOCK_FORMAT = 'ddd MMM D h:mm A'
+
 const Navbar = () => {
   const { isTrailEnabled, toggleTrail } = useUIStore()
+  const [time, setTime] = useState(() => dayjs().format(CLOCK_FORMAT))
+
+  useEffect(() => {
+    // checking every second keeps the minute flip accurate; setting an
+    // identical string lets React skip the re-render in between
+    const id = setInterval(() => setTime(dayjs().format(CLOCK_FORMAT)), 1000)
+    return () => clearInterval(id)
+  }, [])
 
   return (
     <nav>
@@ -47,7 +58,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <time>{dayjs().format('ddd MMM D h:mm A')}</time>
+        <time>{time}</time>
       </div>
     </nav>
   )

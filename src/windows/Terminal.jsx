@@ -1,11 +1,19 @@
+import { useGSAP } from '@gsap/react'
 import dayjs from 'dayjs'
+import gsap from 'gsap'
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin'
 import { useEffect, useRef, useState } from 'react'
 import WindowControls from '#components/WindowControls.jsx'
 import { locations, socials, techStack } from '#constants'
 import WindowWrapper from '#hoc/WindowWrapper.jsx'
 import useWindowStore from '#store/window.js'
 
+gsap.registerPlugin(ScrambleTextPlugin)
+
 const PROMPT = 'bhanu@portfolio ~ %'
+
+// glyphs the scramble cycles through before each character settles
+const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#'
 
 const COMMANDS = [
   { name: 'help', description: 'List all available commands' },
@@ -143,6 +151,28 @@ const Terminal = (props) => {
   const inputRef = useRef(null)
   const scrollRef = useRef(null)
   const entryId = useRef(0)
+  const welcomeStartRef = useRef(null)
+  const welcomeEndRef = useRef(null)
+
+  // scramble the welcome line in whenever the terminal opens
+  useGSAP(() => {
+    const scrambleIn = (el, duration) =>
+      gsap.to(el, {
+        scrambleText: {
+          text: el.textContent,
+          chars: SCRAMBLE_CHARS,
+          revealDelay: 0.15,
+          speed: 0.4,
+        },
+        ease: 'power2.inOut',
+        duration,
+      })
+
+    gsap
+      .timeline()
+      .add(scrambleIn(welcomeStartRef.current, 1.4))
+      .add(scrambleIn(welcomeEndRef.current, 1.6), '-=1.0')
+  }, [])
 
   const query = value.replace(/^\//, '')
   const suggestions = value
@@ -272,10 +302,16 @@ const Terminal = (props) => {
         <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto p-4">
           <div className="text-gray-500">
             <p>Last login: {dayjs().format('ddd MMM D HH:mm:ss')} on console</p>
+            {/* the welcome line is split around the static green slash because
+                ScrambleText flattens any markup inside the element it animates */}
             <p className="mt-1 text-gray-300">
-              Welcome to my portfolio terminal! Type{' '}
-              <span className="text-emerald-400">/</span> to see the available
-              commands.
+              {/* the spaces live outside the animated spans — ScrambleText
+                  trims the text it animates */}
+              <span ref={welcomeStartRef}>
+                Welcome to my portfolio terminal! Type
+              </span>{' '}
+              <span className="text-emerald-400">/</span>{' '}
+              <span ref={welcomeEndRef}>to see the available commands.</span>
             </p>
           </div>
 

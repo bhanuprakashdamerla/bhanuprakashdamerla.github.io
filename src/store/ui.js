@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 const useUIStore = create((set) => ({
-  isTrailEnabled: false ,
+  isTrailEnabled: false,
   toggleTrail: () =>
     set((state) => ({ isTrailEnabled: !state.isTrailEnabled })),
 }))
