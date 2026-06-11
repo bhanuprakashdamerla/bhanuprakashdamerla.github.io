@@ -37,7 +37,8 @@ body {
   }
 
   nav {
-    @apply flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
+    /* z-[10000] keeps the menu bar above all windows (window z-index starts at 1000) */
+    @apply relative z-[10000] flex justify-between items-center bg-white/50 backdrop-blur-3xl p-2 px-5 select-none;
 
     div {
       @apply flex items-center max-sm:w-full max-sm:justify-center gap-5;
@@ -79,7 +80,8 @@ body {
   }
 
   #dock {
-    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-50 select-none max-sm:hidden;
+    /* z-[10000] keeps the dock above all windows (window z-index starts at 1000) */
+    @apply absolute bottom-5 left-1/2 -translate-x-1/2 z-[10000] select-none max-sm:hidden;
 
     .dock-container {
       @apply bg-white/20 backdrop-blur-md justify-between rounded-2xl p-1.5 flex items-end gap-1.5;
@@ -119,7 +121,13 @@ body {
   }
 
   #safari {
-    @apply w-4xl absolute top-40 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    /* capped height so the window always fits between the menu bar and the
+       dock — the page content scrolls inside instead */
+    @apply w-4xl max-h-[calc(100dvh-10rem)] flex flex-col absolute top-12 left-2/12 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+
+    #window-header {
+      @apply flex-none;
+    }
 
     .search {
       @apply flex items-center gap-3 w-2/3 bg-white border border-gray-300 rounded-lg px-3 py-2;
@@ -130,7 +138,7 @@ body {
     }
 
     .blog {
-      @apply bg-white p-10 max-w-3xl mx-auto;
+      @apply bg-white p-10 w-full min-h-0 overflow-y-auto;
 
       h2 {
         @apply text-xl font-bold text-pink-600 mb-10;
@@ -237,59 +245,67 @@ body {
   }
 
   #photos {
-    @apply max-w-3xl absolute top-96 left-1/2 -translate-y-1/2 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
+    @apply w-3xl absolute top-28 left-1/4 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
 
     .sidebar {
-      @apply w-3/12 flex-none bg-gray-50 border-r border-gray-200 flex flex-col p-5;
+      @apply w-44 flex-none bg-gray-50/95 border-r border-gray-200 flex flex-col p-4;
 
       h2 {
-        @apply text-xs font-medium text-gray-400 mb-1;
+        @apply text-[11px] font-semibold uppercase tracking-wider text-gray-400 mt-6 mb-1.5 px-2.5;
       }
 
       ul {
-        li {
-          @apply flex space-y-1 items-center gap-2 px-3 py-2 rounded-md cursor-pointer transition-colors;
+        @apply space-y-0.5;
 
-          &:first-child {
-            @apply bg-blue-100 text-blue-700;
+        li {
+          @apply flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg cursor-pointer transition-colors text-gray-700 hover:bg-gray-200/70;
+
+          &.active {
+            @apply bg-blue-500/15 text-blue-600 hover:bg-blue-500/15;
           }
 
           img {
-            @apply w-4;
+            @apply w-4 opacity-75;
           }
 
           p {
-            @apply text-sm font-medium;
+            @apply text-[13px] font-medium;
           }
         }
       }
     }
 
     .gallery {
-      @apply p-5;
+      @apply flex-1 flex flex-col min-w-0;
+
+      .gallery-header {
+        @apply flex items-baseline justify-between px-5 pt-4 pb-2;
+
+        h2 {
+          @apply text-base font-semibold text-gray-800;
+        }
+
+        p {
+          @apply text-xs text-gray-400;
+        }
+      }
 
       ul {
-        @apply grid grid-cols-5 grid-rows-5 gap-2.5;
+        @apply flex-1 grid grid-cols-4 auto-rows-[96px] gap-1.5 px-5 pb-5 pt-1 overflow-y-auto;
 
         li {
+          @apply relative overflow-hidden rounded-lg bg-gray-100;
+
           img {
-            @apply size-full object-cover rounded-lg;
+            @apply size-full object-cover transition-transform duration-300 hover:scale-105;
           }
 
           &:first-child {
-            @apply row-start-1 row-span-3 col-start-1 col-span-3;
+            @apply col-span-2 row-span-2;
           }
 
           &:nth-child(2) {
-            @apply row-start-1 row-span-3 col-start-4 col-span-2;
-          }
-
-          &:nth-child(3) {
-            @apply row-start-4 row-span-2 col-start-3 col-span-3;
-          }
-
-          &:last-child {
-            @apply row-start-4 row-span-2 col-start-1 col-span-2;
+            @apply col-span-2;
           }
         }
       }

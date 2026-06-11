@@ -8,16 +8,16 @@ import { Tooltip } from 'react-tooltip';
 const Dock = () => {
   const dockRef = useRef(null);
 
-  const { openWindow, closeWindow, windows } = useWindowsStore();
+  const { openWindow, focusWindow, windows } = useWindowsStore();
 
-  const toggleApp = (app) => {
+  const launchApp = (app) => {
     if (!app.canOpen) return;
 
     const window = windows[app.id];
     if (!window) return;
 
     if (window.isOpen) {
-      closeWindow(app.id);
+      focusWindow(app.id);
     } else {
       openWindow(app.id);
     }
@@ -90,7 +90,7 @@ const Dock = () => {
                 data-tooltip-content={name}
                 data-tooltip-delay-show={150}
                 disabled={!canOpen}
-                onClick={() => toggleApp(app)}
+                onClick={() => launchApp(app)}
               >
                 <img
                   src={`/images/${icon}`}

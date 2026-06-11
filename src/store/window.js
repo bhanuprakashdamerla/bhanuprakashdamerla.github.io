@@ -16,7 +16,7 @@ const useWindowStore = create(immer((set) => ({
         })
     },
 
-    closeWindow: (windowKey, data = null) => {
+    closeWindow: (windowKey) => {
         set((state) => {
             const window = state.windows[windowKey];
             if (!window) return;
@@ -26,9 +26,12 @@ const useWindowStore = create(immer((set) => ({
         })
     },
 
-    focusWindow: (windowKey, data = null) => {
+    focusWindow: (windowKey) => {
         set((state) => {
             const window = state.windows[windowKey];
+            if (!window || !window.isOpen) return;
+            // already on top, no need to bump the z-index
+            if (window.zIndex === state.nextZIndex - 1) return;
             window.zIndex = state.nextZIndex++;
         })
     },
