@@ -1,4 +1,4 @@
-import { Dock, Navbar, Welcome } from '#components'
+import { Dock, MouseTrail, Navbar, Welcome } from '#components'
 import {
   Contact,
   Finder,
@@ -14,6 +14,7 @@ const App = () => {
     <main>
       <Navbar />
       <Welcome />
+      <MouseTrail />
 
       <Finder />
       <Safari />

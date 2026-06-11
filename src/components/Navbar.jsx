@@ -1,7 +1,11 @@
 import dayjs from 'dayjs'
+import { Sparkles } from 'lucide-react'
 import { navIcons, navLinks } from '#constants'
+import useUIStore from '#store/ui.js'
 
 const Navbar = () => {
+  const { isTrailEnabled, toggleTrail } = useUIStore()
+
   return (
     <nav>
       <div>
@@ -19,6 +23,23 @@ const Navbar = () => {
 
       <div>
         <ul>
+          <li>
+            <button
+              type="button"
+              className="icon flex-center cursor-pointer"
+              onClick={toggleTrail}
+              aria-pressed={isTrailEnabled}
+              title={
+                isTrailEnabled ? 'Disable mouse trail' : 'Enable mouse trail'
+              }
+            >
+              <Sparkles
+                size={16}
+                className={isTrailEnabled ? 'text-blue-600' : 'text-black'}
+                fill={isTrailEnabled ? 'currentColor' : 'black'}
+              />
+            </button>
+          </li>
           {navIcons.map(({ id, img }) => (
             <li key={id}>
               <img src={img} className="icon-hover" alt={`icon-${id}`} />
