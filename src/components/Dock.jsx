@@ -100,6 +100,9 @@ const Dock = () => {
                   className={!canOpen ? 'opacity-60' : ''}
                 />
               </button>
+              {windows[id]?.isOpen && (
+                <span className="absolute -bottom-1 size-1 rounded-full bg-white" />
+              )}
             </div>
           )
         })}
